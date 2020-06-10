@@ -1,6 +1,6 @@
 import nodeAssert from "assert";
 
-import * as assert from "..";
+import * as t from "..";
 
 class C {}
 
@@ -44,51 +44,51 @@ const entries = Object.entries(fixtures) as [
 const orNull = <T>(t: T): T | null => t;
 const orUndefined = <T>(t: T): T | undefined => t;
 
-const baseAsserts: [string, assert.WeakAssert][] = [
-  ["default", assert.defaultAssert],
+const baseAsserts: [string, t.WeakAssert][] = [
+  ["default", t.defaultAssert],
   ["node", nodeAssert],
 ];
 
 describe("typed-assert", () => {
   for (const [label, baseAssert] of baseAsserts) {
     describe(label, () => {
-      assert.setBaseAssert(baseAssert);
+      t.setBaseAssert(baseAssert);
       test("isNotNull", () => {
         const v = orNull(fixtures.string);
-        assert.isNotNull(v);
+        t.isNotNull(v);
         // v is "string"
         for (const [key, value] of entries) {
           if (key === "null") {
-            expect(() => assert.isNotNull(value)).toThrow();
+            expect(() => t.isNotNull(value)).toThrow();
           } else {
-            expect(() => assert.isNotNull(value)).not.toThrow();
+            expect(() => t.isNotNull(value)).not.toThrow();
           }
         }
       });
 
       test("isNotUndefined", () => {
         const v = orUndefined(fixtures.string);
-        assert.isNotUndefined(v);
+        t.isNotUndefined(v);
         // v is "string"
         for (const [key, value] of entries) {
           if (key === "undefined") {
-            expect(() => assert.isNotUndefined(value)).toThrow();
+            expect(() => t.isNotUndefined(value)).toThrow();
           } else {
-            expect(() => assert.isNotUndefined(value)).not.toThrow();
+            expect(() => t.isNotUndefined(value)).not.toThrow();
           }
         }
       });
 
       test("isExactly", () => {
         const v = orUndefined("value");
-        assert.isExactly(v, "value");
+        t.isExactly(v, "value");
         // v is "value"
         for (const [, value] of entries) {
-          expect(() => assert.isExactly(value, value)).not.toThrow();
+          expect(() => t.isExactly(value, value)).not.toThrow();
           for (const [, otherValue] of entries) {
             if (otherValue !== value) {
-              expect(() => assert.isExactly(value, otherValue)).toThrow();
-              expect(() => assert.isExactly(otherValue, value)).toThrow();
+              expect(() => t.isExactly(value, otherValue)).toThrow();
+              expect(() => t.isExactly(otherValue, value)).toThrow();
             }
           }
         }
@@ -96,72 +96,72 @@ describe("typed-assert", () => {
 
       test("isBoolean", () => {
         const v = orNull(fixtures.boolean);
-        assert.isBoolean(v);
+        t.isBoolean(v);
         // v is "boolean"
         for (const [key, value] of entries) {
           if (key === "boolean") {
-            expect(() => assert.isBoolean(value)).not.toThrow();
+            expect(() => t.isBoolean(value)).not.toThrow();
           } else {
-            expect(() => assert.isBoolean(value)).toThrow();
+            expect(() => t.isBoolean(value)).toThrow();
           }
         }
       });
 
       test("isNumber", () => {
         const v = orNull(fixtures.number);
-        assert.isNumber(v);
+        t.isNumber(v);
         // v is "number"
         for (const [key, value] of entries) {
           if (key === "string") {
-            expect(() => assert.isString(value)).not.toThrow();
+            expect(() => t.isString(value)).not.toThrow();
           } else {
-            expect(() => assert.isString(value)).toThrow();
+            expect(() => t.isString(value)).toThrow();
           }
         }
       });
 
       test("isString", () => {
         const v = orNull(fixtures.string);
-        assert.isString(v);
+        t.isString(v);
         // v is "string"
         for (const [key, value] of entries) {
           if (key === "string") {
-            expect(() => assert.isString(value)).not.toThrow();
+            expect(() => t.isString(value)).not.toThrow();
           } else {
-            expect(() => assert.isString(value)).toThrow();
+            expect(() => t.isString(value)).toThrow();
           }
         }
       });
 
       test("isDate", () => {
         const v = orNull(fixtures.date);
-        assert.isDate(v);
+        t.isDate(v);
         // v is "Date"
         for (const [key, value] of entries) {
           if (key === "date") {
-            expect(() => assert.isDate(value)).not.toThrow();
+            expect(() => t.isDate(value)).not.toThrow();
           } else {
-            expect(() => assert.isDate(value)).toThrow();
+            expect(() => t.isDate(value)).toThrow();
           }
         }
       });
 
       test("isPromise", () => {
         const v = orNull(fixtures.promise);
-        assert.isPromise(v);
+        t.isPromise(v);
         // v is "Promise<null>"
         for (const [key, value] of entries) {
           if (key === "promise") {
-            expect(() => assert.isPromise(value)).not.toThrow();
+            expect(() => t.isPromise(value)).not.toThrow();
           } else {
-            expect(() => assert.isPromise(value)).toThrow();
+            expect(() => t.isPromise(value)).toThrow();
           }
         }
       });
 
       test("isRecord", () => {
         const v = orNull(fixtures.record);
-        assert.isRecord(v);
+        t.isRecord(v);
         // v is "Record<string, unkown>"
         for (const [key, value] of entries) {
           if (
@@ -178,22 +178,22 @@ describe("typed-assert", () => {
               "c",
             ].includes(key)
           ) {
-            expect(() => assert.isRecord(value)).not.toThrow();
+            expect(() => t.isRecord(value)).not.toThrow();
           } else {
-            expect(() => assert.isRecord(value)).toThrow();
+            expect(() => t.isRecord(value)).toThrow();
           }
         }
       });
 
       test("isArray", () => {
         const v = orNull(fixtures.array);
-        assert.isArray(v);
+        t.isArray(v);
         // v is unknown[]
         for (const [key, value] of entries) {
           if (["array", "strings", "numbers"].includes(key)) {
-            expect(() => assert.isArray(value)).not.toThrow();
+            expect(() => t.isArray(value)).not.toThrow();
           } else {
-            expect(() => assert.isArray(value)).toThrow();
+            expect(() => t.isArray(value)).toThrow();
           }
         }
       });
@@ -201,36 +201,36 @@ describe("typed-assert", () => {
       test("isRecordWithKeys", () => {
         const keys = Object.keys(fixtures.recordWithKeys);
         const v = orNull(fixtures.recordWithKeys);
-        assert.isRecordWithKeys(v, keys);
+        t.isRecordWithKeys(v, keys);
         // v is typeof fixtures.recordWithKeys
         for (const [key, value] of entries) {
           if (key === "recordWithKeys") {
-            expect(() => assert.isRecordWithKeys(value, keys)).not.toThrow();
+            expect(() => t.isRecordWithKeys(value, keys)).not.toThrow();
           } else {
-            expect(() => assert.isRecordWithKeys(value, keys)).toThrow();
+            expect(() => t.isRecordWithKeys(value, keys)).toThrow();
           }
         }
 
         expect(() =>
-          assert.isRecordWithKeys(fixtures.recordWithKeys, ["a"]),
+          t.isRecordWithKeys(fixtures.recordWithKeys, ["a"]),
         ).not.toThrow();
         expect(() =>
-          assert.isRecordWithKeys(fixtures.recordWithKeys, ["b"]),
+          t.isRecordWithKeys(fixtures.recordWithKeys, ["b"]),
         ).toThrow();
         expect(() =>
-          assert.isRecordWithKeys(fixtures.recordWithKeys, ["f"]),
+          t.isRecordWithKeys(fixtures.recordWithKeys, ["f"]),
         ).not.toThrow();
         expect(() =>
-          assert.isRecordWithKeys(fixtures.recordWithKeys.a, ["b", "e"]),
+          t.isRecordWithKeys(fixtures.recordWithKeys.a, ["b", "e"]),
         ).not.toThrow();
         expect(() =>
-          assert.isRecordWithKeys(fixtures.recordWithKeys, ["a", "b"]),
+          t.isRecordWithKeys(fixtures.recordWithKeys, ["a", "b"]),
         ).toThrow();
       });
 
       test("isRecordOfType", () => {
         const v = orNull(fixtures.recordOfNumbers);
-        assert.isRecordOfType(v, assert.isNumber);
+        t.isRecordOfType(v, t.isNumber);
         // v is Record<string, number>
         for (const [key, value] of entries) {
           if (
@@ -244,63 +244,51 @@ describe("typed-assert", () => {
               "c",
             ].includes(key)
           ) {
-            expect(() =>
-              assert.isRecordOfType(value, assert.isNumber),
-            ).not.toThrow();
+            expect(() => t.isRecordOfType(value, t.isNumber)).not.toThrow();
           } else {
-            expect(() =>
-              assert.isRecordOfType(value, assert.isNumber),
-            ).toThrow();
+            expect(() => t.isRecordOfType(value, t.isNumber)).toThrow();
           }
         }
       });
 
       test("isArrayOfType", () => {
         const v = orNull(fixtures.numbers);
-        assert.isArrayOfType(v, assert.isNumber);
+        t.isArrayOfType(v, t.isNumber);
         // v is number[]
         for (const [key, value] of entries) {
           if (["array", "numbers"].includes(key)) {
-            expect(() =>
-              assert.isArrayOfType(value, assert.isNumber),
-            ).not.toThrow();
+            expect(() => t.isArrayOfType(value, t.isNumber)).not.toThrow();
           } else {
-            expect(() =>
-              assert.isArrayOfType(value, assert.isNumber),
-            ).toThrow();
+            expect(() => t.isArrayOfType(value, t.isNumber)).toThrow();
           }
         }
       });
 
       test("isOptionOfType", () => {
         const v = orNull(fixtures.number);
-        assert.isOptionOfType(v, assert.isNumber);
+        t.isOptionOfType(v, t.isNumber);
         // v is "number"
         for (const [key, value] of entries) {
           if (["undefined", "number"].includes(key)) {
-            expect(() =>
-              assert.isOptionOfType(value, assert.isNumber),
-            ).not.toThrow();
+            expect(() => t.isOptionOfType(value, t.isNumber)).not.toThrow();
           } else {
-            expect(() =>
-              assert.isOptionOfType(value, assert.isNumber),
-            ).toThrow();
+            expect(() => t.isOptionOfType(value, t.isNumber)).toThrow();
           }
         }
       });
 
       test("isOneOf", () => {
         const v = orNull("a");
-        assert.isOneOf(v, ["a", "b"] as const);
+        t.isOneOf(v, ["a", "b"] as const);
         // v is "a"
         for (const [key, value] of entries) {
           if (key === "number") {
             expect(() =>
-              assert.isOneOf(value, [fixtures.number, fixtures.number + 1]),
+              t.isOneOf(value, [fixtures.number, fixtures.number + 1]),
             ).not.toThrow();
           } else {
             expect(() =>
-              assert.isOneOf(value, [fixtures.number, fixtures.number + 1]),
+              t.isOneOf(value, [fixtures.number, fixtures.number + 1]),
             ).toThrow();
           }
         }
@@ -308,16 +296,16 @@ describe("typed-assert", () => {
 
       test("isOneOfType", () => {
         const v = orNull(fixtures.string);
-        assert.isOneOfType(v, [assert.isString, assert.isNumber]);
+        t.isOneOfType(v, [t.isString, t.isNumber]);
         // v is "string"
         for (const [key, value] of entries) {
           if (["string", "number"].includes(key)) {
             expect(() =>
-              assert.isOneOfType(value, [assert.isString, assert.isNumber]),
+              t.isOneOfType(value, [t.isString, t.isNumber]),
             ).not.toThrow();
           } else {
             expect(() =>
-              assert.isOneOfType(value, [assert.isString, assert.isNumber]),
+              t.isOneOfType(value, [t.isString, t.isNumber]),
             ).toThrow();
           }
         }
@@ -325,13 +313,13 @@ describe("typed-assert", () => {
 
       test("isInstanceOf", () => {
         const v = orNull(fixtures.date);
-        assert.isInstanceOf(v, Date);
+        t.isInstanceOf(v, Date);
         // v is Date
         for (const [key, value] of entries) {
           if (key === "c") {
-            expect(() => assert.isInstanceOf(value, C)).not.toThrow();
+            expect(() => t.isInstanceOf(value, C)).not.toThrow();
           } else {
-            expect(() => assert.isInstanceOf(value, C)).toThrow();
+            expect(() => t.isInstanceOf(value, C)).toThrow();
           }
         }
       });
@@ -350,16 +338,16 @@ describe("typed-assert", () => {
         function assertIsInput(
           input: unknown,
         ): asserts input is typeof fixtures.recordWithKeys {
-          assert.isRecordWithKeys(input, ["a", "f"]);
-          assert.isRecordWithKeys(input.a, ["b", "e"]);
-          assert.isRecordWithKeys(input.a.b, ["c"]);
-          assert.isExactly(input.a.b.c, "d" as const);
-          assert.isExactly(input.a.e, null);
-          assert.isExactly(input.f, "g");
+          t.isRecordWithKeys(input, ["a", "f"]);
+          t.isRecordWithKeys(input.a, ["b", "e"]);
+          t.isRecordWithKeys(input.a.b, ["c"]);
+          t.isExactly(input.a.b.c, "d" as const);
+          t.isExactly(input.a.e, null);
+          t.isExactly(input.f, "g");
         }
 
         const json = JSON.stringify(input);
-        const output = assert.safeJsonParse(json);
+        const output = t.safeJsonParse(json);
 
         assertIsInput(output);
 
@@ -369,11 +357,13 @@ describe("typed-assert", () => {
       });
 
       test("check filter", () => {
-        const t = entries
+        const a = entries
           .map(([, value]) => value)
-          .filter(assert.check(assert.isNumber));
-        for (const item of t) {
-          expect(() => assert.isNumber(item)).not.toThrow();
+          .filter(t.check(t.isNumber))
+          .map((value) => (value % 0 === 0 ? value : null))
+          .filter(t.check(t.isNotNull));
+        for (const item of a) {
+          expect(() => t.isNumber(item)).not.toThrow();
         }
       });
     });

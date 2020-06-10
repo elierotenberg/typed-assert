@@ -8,6 +8,7 @@
 
 * [Assert](README.md#assert)
 * [Check](README.md#check)
+* [SubType](README.md#subtype)
 * [WeakAssert](README.md#weakassert)
 
 ### Variables
@@ -46,17 +47,17 @@
 
 Ƭ **Assert**: *function*
 
-*Defined in [index.ts:22](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L22)*
+*Defined in [index.ts:7](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L7)*
 
 #### Type declaration:
 
-▸ (`input`: unknown, `message?`: undefined | string): *asserts input is T*
+▸ (`input`: Input, `message?`: undefined | string): *asserts input is SubType<Input, Output>*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`input` | unknown |
+`input` | Input |
 `message?` | undefined &#124; string |
 
 ___
@@ -65,17 +66,25 @@ ___
 
 Ƭ **Check**: *function*
 
-*Defined in [index.ts:27](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L27)*
+*Defined in [index.ts:12](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L12)*
 
 #### Type declaration:
 
-▸ (`input`: unknown): *input is T*
+▸ (`input`: Input): *input is SubType<Input, Output>*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`input` | unknown |
+`input` | Input |
+
+___
+
+###  SubType
+
+Ƭ **SubType**: *Output extends Input ? Output : never*
+
+*Defined in [index.ts:5](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L5)*
 
 ___
 
@@ -83,7 +92,7 @@ ___
 
 Ƭ **WeakAssert**: *function*
 
-*Defined in [index.ts:3](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L3)*
+*Defined in [index.ts:3](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L3)*
 
 #### Type declaration:
 
@@ -102,7 +111,7 @@ Name | Type |
 
 • **baseAssert**: *function* = defaultAssert
 
-*Defined in [index.ts:11](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L11)*
+*Defined in [index.ts:22](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L22)*
 
 #### Type declaration:
 
@@ -119,15 +128,15 @@ Name | Type |
 
 ### `Const` assert
 
-▸ **assert**(`condition`: unknown, `message`: undefined | string): *void*
+▸ **assert**(`condition`: boolean, `message`: undefined | string): *void*
 
-*Defined in [index.ts:13](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L13)*
+*Defined in [index.ts:24](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L24)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`condition` | unknown |
+`condition` | boolean |
 `message` | undefined &#124; string |
 
 **Returns:** *void*
@@ -136,21 +145,23 @@ ___
 
 ###  check
 
-▸ **check**‹**T**›(`assertT`: [Assert](README.md#assert)‹T›): *[Check](README.md#check)‹T›*
+▸ **check**‹**Input**, **Output**›(`assertT`: [Assert](README.md#assert)‹Input, Output›): *[Check](README.md#check)‹Input, Output›*
 
-*Defined in [index.ts:187](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L187)*
+*Defined in [index.ts:191](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L191)*
 
 **Type parameters:**
 
-▪ **T**
+▪ **Input**
+
+▪ **Output**
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`assertT` | [Assert](README.md#assert)‹T› |
+`assertT` | [Assert](README.md#assert)‹Input, Output› |
 
-**Returns:** *[Check](README.md#check)‹T›*
+**Returns:** *[Check](README.md#check)‹Input, Output›*
 
 ___
 
@@ -158,7 +169,7 @@ ___
 
 ▸ **defaultAssert**(`condition`: unknown, `message`: undefined | string): *void*
 
-*Defined in [index.ts:5](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L5)*
+*Defined in [index.ts:16](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L16)*
 
 **Parameters:**
 
@@ -175,7 +186,7 @@ ___
 
 ▸ **expectedToBe**(`type`: string): *string*
 
-*Defined in [index.ts:1](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L1)*
+*Defined in [index.ts:1](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L1)*
 
 **Parameters:**
 
@@ -191,7 +202,7 @@ ___
 
 ▸ **isArray**(`input`: unknown, `message`: string): *asserts input is unknown[]*
 
-*Defined in [index.ts:106](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L106)*
+*Defined in [index.ts:110](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L110)*
 
 **Parameters:**
 
@@ -206,9 +217,9 @@ ___
 
 ###  isArrayOfType
 
-▸ **isArrayOfType**‹**T**›(`input`: unknown, `assertT`: function, `message`: string, `itemMessage`: string): *asserts input is T[]*
+▸ **isArrayOfType**‹**T**›(`input`: unknown, `assertT`: [Assert](README.md#assert)‹unknown, T›, `message`: string, `itemMessage`: string): *asserts input is T[]*
 
-*Defined in [index.ts:125](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L125)*
+*Defined in [index.ts:129](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L129)*
 
 **Type parameters:**
 
@@ -216,22 +227,12 @@ ___
 
 **Parameters:**
 
-▪ **input**: *unknown*
-
-▪ **assertT**: *function*
-
-▸ (`input`: unknown, `message?`: undefined | string): *asserts input is T*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`input` | unknown |
-`message?` | undefined &#124; string |
-
-▪`Default value`  **message**: *string*= expectedToBe("an array of given type")
-
-▪`Default value`  **itemMessage**: *string*= expectedToBe("of given type")
+Name | Type | Default |
+------ | ------ | ------ |
+`input` | unknown | - |
+`assertT` | [Assert](README.md#assert)‹unknown, T› | - |
+`message` | string | expectedToBe("an array of given type") |
+`itemMessage` | string | expectedToBe("of given type") |
 
 **Returns:** *asserts input is T[]*
 
@@ -241,7 +242,7 @@ ___
 
 ▸ **isBoolean**(`input`: unknown, `message`: string): *asserts input is boolean*
 
-*Defined in [index.ts:54](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L54)*
+*Defined in [index.ts:58](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L58)*
 
 **Parameters:**
 
@@ -258,7 +259,7 @@ ___
 
 ▸ **isDate**(`input`: unknown, `message`: string): *asserts input is Date*
 
-*Defined in [index.ts:75](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L75)*
+*Defined in [index.ts:79](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L79)*
 
 **Parameters:**
 
@@ -273,23 +274,25 @@ ___
 
 ###  isExactly
 
-▸ **isExactly**‹**T**›(`input`: unknown, `value`: T, `message`: string): *asserts input is T*
+▸ **isExactly**‹**Input**, **Output**›(`input`: Input, `value`: Output, `message`: string): *asserts input is SubType<Input, Output>*
 
-*Defined in [index.ts:46](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L46)*
+*Defined in [index.ts:50](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L50)*
 
 **Type parameters:**
 
-▪ **T**
+▪ **Input**
+
+▪ **Output**
 
 **Parameters:**
 
 Name | Type | Default |
 ------ | ------ | ------ |
-`input` | unknown | - |
-`value` | T | - |
+`input` | Input | - |
+`value` | Output | - |
 `message` | string | expectedToBe(`exactly ${value}`) |
 
-**Returns:** *asserts input is T*
+**Returns:** *asserts input is SubType<Input, Output>*
 
 ___
 
@@ -297,7 +300,7 @@ ___
 
 ▸ **isInstanceOf**‹**T**›(`input`: unknown, `constructor`: object, `message`: string): *asserts input is T*
 
-*Defined in [index.ts:171](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L171)*
+*Defined in [index.ts:175](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L175)*
 
 **Type parameters:**
 
@@ -319,7 +322,7 @@ ___
 
 ▸ **isNotNull**‹**T**›(`input`: null | T, `message`: string): *asserts input is T*
 
-*Defined in [index.ts:32](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L32)*
+*Defined in [index.ts:36](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L36)*
 
 **Type parameters:**
 
@@ -340,7 +343,7 @@ ___
 
 ▸ **isNotUndefined**‹**T**›(`input`: undefined | T, `message`: string): *asserts input is T*
 
-*Defined in [index.ts:39](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L39)*
+*Defined in [index.ts:43](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L43)*
 
 **Type parameters:**
 
@@ -361,7 +364,7 @@ ___
 
 ▸ **isNumber**(`input`: unknown, `message`: string): *asserts input is number*
 
-*Defined in [index.ts:61](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L61)*
+*Defined in [index.ts:65](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L65)*
 
 **Parameters:**
 
@@ -376,31 +379,33 @@ ___
 
 ###  isOneOf
 
-▸ **isOneOf**‹**T**›(`input`: unknown, `values`: keyof T[], `message`: string): *asserts input is T*
+▸ **isOneOf**‹**Input**, **Output**›(`input`: Input, `values`: keyof Output[], `message`: string): *asserts input is SubType<Input, Output>*
 
-*Defined in [index.ts:148](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L148)*
+*Defined in [index.ts:152](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L152)*
 
 **Type parameters:**
 
-▪ **T**
+▪ **Input**
+
+▪ **Output**
 
 **Parameters:**
 
 Name | Type | Default |
 ------ | ------ | ------ |
-`input` | unknown | - |
-`values` | keyof T[] | - |
+`input` | Input | - |
+`values` | keyof Output[] | - |
 `message` | string | expectedToBe(`one of ${values.join(", ")}`) |
 
-**Returns:** *asserts input is T*
+**Returns:** *asserts input is SubType<Input, Output>*
 
 ___
 
 ###  isOneOfType
 
-▸ **isOneOfType**‹**T**›(`input`: unknown, `assertT`: [Assert](README.md#assert)‹T›[], `message`: string, `itemMessage?`: undefined | string): *asserts input is T*
+▸ **isOneOfType**‹**T**›(`input`: unknown, `assertT`: [Assert](README.md#assert)‹unknown, T›[], `message`: string, `itemMessage?`: undefined | string): *asserts input is T*
 
-*Defined in [index.ts:156](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L156)*
+*Defined in [index.ts:160](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L160)*
 
 **Type parameters:**
 
@@ -411,7 +416,7 @@ ___
 Name | Type | Default |
 ------ | ------ | ------ |
 `input` | unknown | - |
-`assertT` | [Assert](README.md#assert)‹T›[] | - |
+`assertT` | [Assert](README.md#assert)‹unknown, T›[] | - |
 `message` | string | expectedToBe(`one of type`) |
 `itemMessage?` | undefined &#124; string | - |
 
@@ -421,23 +426,25 @@ ___
 
 ###  isOptionOfType
 
-▸ **isOptionOfType**‹**T**›(`input`: unknown, `assertT`: [Assert](README.md#assert)‹T›, `message`: string): *asserts input is T | undefined*
+▸ **isOptionOfType**‹**Input**, **Output**›(`input`: Input | undefined, `assertT`: [Assert](README.md#assert)‹Input, Output›, `message`: string): *asserts input is SubType<Input, Output | undefined>*
 
-*Defined in [index.ts:137](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L137)*
+*Defined in [index.ts:141](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L141)*
 
 **Type parameters:**
 
-▪ **T**
+▪ **Input**
+
+▪ **Output**
 
 **Parameters:**
 
 Name | Type | Default |
 ------ | ------ | ------ |
-`input` | unknown | - |
-`assertT` | [Assert](README.md#assert)‹T› | - |
+`input` | Input &#124; undefined | - |
+`assertT` | [Assert](README.md#assert)‹Input, Output› | - |
 `message` | string | expectedToBe("option of given type") |
 
-**Returns:** *asserts input is T | undefined*
+**Returns:** *asserts input is SubType<Input, Output | undefined>*
 
 ___
 
@@ -445,7 +452,7 @@ ___
 
 ▸ **isPromise**(`input`: unknown, `message`: string): *asserts input is Promise<unknown>*
 
-*Defined in [index.ts:180](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L180)*
+*Defined in [index.ts:184](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L184)*
 
 **Parameters:**
 
@@ -462,7 +469,7 @@ ___
 
 ▸ **isRecord**(`input`: unknown, `message`: string): *asserts input is Record<string, unknown>*
 
-*Defined in [index.ts:82](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L82)*
+*Defined in [index.ts:86](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L86)*
 
 **Parameters:**
 
@@ -477,9 +484,9 @@ ___
 
 ###  isRecordOfType
 
-▸ **isRecordOfType**‹**T**›(`input`: unknown, `assertT`: function, `message`: string, `itemMessage`: string): *asserts input is Record<string, T>*
+▸ **isRecordOfType**‹**T**›(`input`: unknown, `assertT`: [Assert](README.md#assert)‹unknown, T›, `message`: string, `itemMessage`: string): *asserts input is Record<string, T>*
 
-*Defined in [index.ts:113](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L113)*
+*Defined in [index.ts:117](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L117)*
 
 **Type parameters:**
 
@@ -487,22 +494,12 @@ ___
 
 **Parameters:**
 
-▪ **input**: *unknown*
-
-▪ **assertT**: *function*
-
-▸ (`input`: unknown, `message?`: undefined | string): *asserts input is T*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`input` | unknown |
-`message?` | undefined &#124; string |
-
-▪`Default value`  **message**: *string*= expectedToBe("a record of given type")
-
-▪`Default value`  **itemMessage**: *string*= expectedToBe("of given type")
+Name | Type | Default |
+------ | ------ | ------ |
+`input` | unknown | - |
+`assertT` | [Assert](README.md#assert)‹unknown, T› | - |
+`message` | string | expectedToBe("a record of given type") |
+`itemMessage` | string | expectedToBe("of given type") |
 
 **Returns:** *asserts input is Record<string, T>*
 
@@ -512,7 +509,7 @@ ___
 
 ▸ **isRecordWithKeys**‹**K**›(`input`: unknown, `keys`: K[], `message`: string): *asserts input is object*
 
-*Defined in [index.ts:93](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L93)*
+*Defined in [index.ts:97](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L97)*
 
 **Type parameters:**
 
@@ -534,7 +531,7 @@ ___
 
 ▸ **isString**(`input`: unknown, `message`: string): *asserts input is string*
 
-*Defined in [index.ts:68](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L68)*
+*Defined in [index.ts:72](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L72)*
 
 **Parameters:**
 
@@ -551,7 +548,7 @@ ___
 
 ▸ **safeJsonParse**(`json`: string): *unknown*
 
-*Defined in [index.ts:29](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L29)*
+*Defined in [index.ts:33](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L33)*
 
 **Parameters:**
 
@@ -567,7 +564,7 @@ ___
 
 ▸ **setBaseAssert**(`assert?`: [WeakAssert](README.md#weakassert)): *void*
 
-*Defined in [index.ts:16](https://github.com/elierotenberg/typed-assert/blob/0c3581d/src/index.ts#L16)*
+*Defined in [index.ts:27](https://github.com/elierotenberg/typed-assert/blob/f4fab92/src/index.ts#L27)*
 
 **Parameters:**
 

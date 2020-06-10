@@ -2,6 +2,17 @@ const expectedToBe = (type: string): string => `expected to be ${type}`;
 
 export type WeakAssert = (input: unknown, message?: string) => void;
 
+export type SubType<Input, Output> = Output extends Input ? Output : never;
+
+export type Assert<Input = unknown, Output = Input> = (
+  input: Input,
+  message?: string,
+) => asserts input is SubType<Input, Output>;
+
+export type Check<Input = unknown, Output = Input> = (
+  input: Input,
+) => input is SubType<Input, Output>;
+
 export const defaultAssert: WeakAssert = (condition, message) => {
   if (!condition) {
     throw new TypeError(message);
@@ -10,7 +21,7 @@ export const defaultAssert: WeakAssert = (condition, message) => {
 
 let baseAssert = defaultAssert;
 
-const assert: Assert<true> = (condition, message) =>
+export const assert: Assert<boolean, true> = (condition, message) =>
   baseAssert(condition, message);
 
 export function setBaseAssert(assert?: WeakAssert): void {
@@ -18,13 +29,6 @@ export function setBaseAssert(assert?: WeakAssert): void {
     baseAssert = assert;
   }
 }
-
-export type Assert<T> = (
-  input: unknown,
-  message?: string,
-) => asserts input is T;
-
-export type Check<T> = (input: unknown) => input is T;
 
 export const safeJsonParse = (json: string): unknown =>
   JSON.parse(json) as unknown;
@@ -43,12 +47,12 @@ export function isNotUndefined<T>(
   assert(input !== undefined, message);
 }
 
-export function isExactly<T>(
-  input: unknown,
-  value: T,
+export function isExactly<Input, Output>(
+  input: Input,
+  value: Output,
   message = expectedToBe(`exactly ${value}`),
-): asserts input is T {
-  assert(input === value, message);
+): asserts input is SubType<Input, Output> {
+  assert((input as unknown) === (value as unknown), message);
 }
 
 export function isBoolean(
@@ -112,7 +116,7 @@ export function isArray(
 
 export function isRecordOfType<T>(
   input: unknown,
-  assertT: (input: unknown, message?: string) => asserts input is T,
+  assertT: Assert<unknown, T>,
   message = expectedToBe("a record of given type"),
   itemMessage = expectedToBe("of given type"),
 ): asserts input is Record<string, T> {
@@ -124,7 +128,7 @@ export function isRecordOfType<T>(
 
 export function isArrayOfType<T>(
   input: unknown,
-  assertT: (input: unknown, message?: string) => asserts input is T,
+  assertT: Assert<unknown, T>,
   message = expectedToBe("an array of given type"),
   itemMessage = expectedToBe("of given type"),
 ): asserts input is T[] {
@@ -134,28 +138,28 @@ export function isArrayOfType<T>(
   }
 }
 
-export function isOptionOfType<T>(
-  input: unknown,
-  assertT: Assert<T>,
+export function isOptionOfType<Input, Output>(
+  input: Input | undefined,
+  assertT: Assert<Input, Output>,
   message = expectedToBe("option of given type"),
-): asserts input is T | undefined {
+): asserts input is SubType<Input, Output | undefined> {
   if (input === undefined) {
     return;
   }
   assertT(input, message);
 }
 
-export function isOneOf<T>(
-  input: unknown,
-  values: readonly T[],
+export function isOneOf<Input, Output>(
+  input: Input,
+  values: readonly Output[],
   message: string = expectedToBe(`one of ${values.join(", ")}`),
-): asserts input is T {
-  assert(values.includes(input as T), message);
+): asserts input is SubType<Input, Output> {
+  assert(values.includes(input as SubType<Input, Output>), message);
 }
 
 export function isOneOfType<T>(
   input: unknown,
-  assertT: Assert<T>[],
+  assertT: Assert<unknown, T>[],
   message: string = expectedToBe(`one of type`),
   itemMessage?: string,
 ): asserts input is T {
@@ -184,8 +188,10 @@ export function isPromise(
   isInstanceOf(input, Promise, message);
 }
 
-export function check<T>(assertT: Assert<T>): Check<T> {
-  return (input: unknown): input is T => {
+export function check<Input, Output>(
+  assertT: Assert<Input, Output>,
+): Check<Input, Output> {
+  return (input: Input): input is SubType<Input, Output> => {
     try {
       assertT(input);
       return true;
@@ -194,5 +200,3 @@ export function check<T>(assertT: Assert<T>): Check<T> {
     }
   };
 }
-
-export default assert;

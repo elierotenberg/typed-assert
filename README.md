@@ -19,14 +19,16 @@ or
 For example, `JSON.stringify` returns `any`, which is not typesafe. With `typed-assert`, we can instead treat the result as `unknown` and gradually check the contents at runtime and still get correct type inference:
 
 ```ts
+import * as t from "typed-assert";
+
 const parseConfigFile = (file: string): { readonly a: string, readonly b: number } => {
   const contents = JSON.parse(fs.readFileSync(file, { encoding: 'utf8'})) as unknown;
   // contents is "unknown" instead of any, because we don't trust the input yet
-  assert.isRecord(contents);
+  t.isRecord(contents);
   // contents is "Record<string, unknown>"
-  assert.isString(contents.a);
+  t.isString(contents.a);
   // contents.a is "string"
-  assert.isNumber(contents.b):
+  t.isNumber(contents.b):
   // contents.b is "number";
   return {
     a: contents.a,
@@ -54,13 +56,13 @@ chai.assert.isNotNull(u);
 chai.assert.typeof(u.a, "string");
 // TS Error (ts2571): u is "unknown"
 
-import * as assert from "typed-assert";
+import * as t from "typed-assert";
 
-assert.isRecord(u);
+t.isRecord(u);
 // u is Record<string, unknown>
-assert.isString(u.a);
+t.isString(u.a);
 // u.a is string
-assert.isNumber(u.b);
+t.isNumber(u.b);
 // u.b is number
 
 const v: { a: string; b: number } = u;
@@ -74,16 +76,16 @@ const v: { a: string; b: number } = u;
 See [the documentation](./API.md) for a full reference.
 
 ```ts
-import * as assert from "typed-assert";
+import * as t from "typed-assert";
 
 // Base asserts
-assert.isExactly("a", "a");
-assert.isNotUndefined(null);
-assert.isNotNull(undefined);
+t.isExactly("a", "a");
+t.isNotUndefined(null);
+t.isNotNull(undefined);
 
 // Asserts combinators
-assert.isOneOf("b", ["a", "b", "c"]);
-assert.isArrayOf([2, 3, 4], assert.isNumber);
+t.isOneOf("b", ["a", "b", "c"]);
+t.isArrayOf([2, 3, 4], t.isNumber);
 
 // Custom composite checks
 interface ICustomType {
@@ -95,11 +97,11 @@ interface ICustomType {
 }
 
 function assertCustomType(input: unknown): asserts input is ICustomType {
-  assert.isRecordWithKeys(input, ["a", "f"]);
-  assert.isRecordWithKeys(input.a, ["b", "d"]);
-  assert.isExactly(input.a.b, "c");
-  assert.isString(input.a.d);
-  assert.isOption(input.f, asset.isNumber);
+  t.isRecordWithKeys(input, ["a", "f"]);
+  t.isRecordWithKeys(input.a, ["b", "d"]);
+  t.isExactly(input.a.b, "c");
+  t.isString(input.a.d);
+  t.isOption(input.f, asset.isNumber);
 }
 
 const v = {
@@ -109,10 +111,22 @@ const v = {
   },
 };
 assertCustomType(v);
+```
 
-// Check + Filter
-const t = ["a", 3, "c", null].filter(assert.check(assert.isNumber));
-// t is "number[]"
+This library also comes with a combinator to transform an assertion functions into a [type guard function](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards):
+```ts
+const checkNumber = t.check(t.isNumber);
+checkNumber(1) === true;
+checkNumber("") === false;
+```
+
+It is especially convenient when combined with functional operations such as `Array#filter`:
+```ts
+const t = ["a", 3, "c", 4, null, 2]
+  .filter(t.check(t.isNumber))
+  .map(x => x % 0 ? x : null)
+  .filter(asset.check(t.isNotNull));
+// t: number[] = [4, 2]
 ```
 
 To encourage using asserts when dealing with untrusted JSON input, the following function is also exported:
@@ -136,12 +150,11 @@ export const defaultAssert: WeakAssert = (condition, message) => {
 ```
 
 It is however possible to configure the library to use a provided base `assert` function, such as the native `assert` module:
-
 ```ts
-import * as assert from "typed-assert";
+import * as t from "typed-assert";
 import nodeAssert from "assert";
 
-assert.setBaseAssert(nodeAssert);
+t.setBaseAssert(nodeAssert);
 ```
 
 ### Caveats
@@ -149,11 +162,10 @@ assert.setBaseAssert(nodeAssert);
 Due to limitations in the typechecker, there are syntactic restrictions in how to define and use type assertion functions. For example, you can not dynamically define an assertion function, even if it looks like a static definition.
 
 Thus the following code won't compile:
-
 ```ts
 function createIsExactly<T>(value: T): (input: unknown) => asserts input is T {
   return function isExactly(input: unknown): asserts input is T {
-    assert.isExactly(input, value);
+    t.isExactly(input, value);
   };
 }
 // No problem so far
@@ -184,7 +196,9 @@ isExactlyNull("a");
 // No problem
 ```
 
-To simplify this pattern, this library also exports the `Assert<T>` type as defined below:
+To simplify the implementation,
+
+To simplify this pattern, this library also exports the `Assert<Input, Output>` type as defined below:
 ```ts
 export type Assert<T> = (
   input: unknown,
@@ -197,8 +211,27 @@ isExactlyNull("a");
 // No problem
 ```
 
-For convenience, this library also exports the `Check<T>` type as defined below:
+For convenience, this library also exports the following types, used internally:
 
 ```ts
-export type Check<T> = (input: unknown) => input is T;
+export type WeakAssert = (input: unknown, message?: string) => void;
+
+export type SubType<Input, Output> = Output extends Input ? Output : never;
+
+export type Assert<Input = unknown, Output = Input> = (
+  input: Input,
+  message?: string,
+) => asserts input is SubType<Input, Output>;
+
+export type Check<Input = unknown, Output = Input> = (
+  input: Input,
+) => input is SubType<Input, Output>;
+```
+
+This way we can write:
+```ts
+const isExactlyNull: Assert<unknown, null> = (input) =>
+  assert(input === null);
+
+isExactlyNull("a");
 ```
