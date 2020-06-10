@@ -1,6 +1,6 @@
 {
   "name": "typed-assert",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "typesafe assertion library for TypeScript 3.7+",
   "main": "build/index.js",
   "scripts": {
@@ -38,9 +38,7 @@
     "prettier": "^2.0.5",
     "ts-jest": "^26.1.0",
     "typedoc": "^0.17.7",
-    "typescript": "^3.9.5"
-  },
-  "dependencies": {
+    "typescript": "^3.9.5",
     "typedoc-plugin-markdown": "^2.3.1"
   }
 }

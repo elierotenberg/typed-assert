@@ -46,7 +46,7 @@
 
 Ƭ **Assert**: *function*
 
-*Defined in [index.ts:22](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L22)*
+*Defined in [index.ts:22](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L22)*
 
 #### Type declaration:
 
@@ -65,7 +65,7 @@ ___
 
 Ƭ **Check**: *function*
 
-*Defined in [index.ts:27](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L27)*
+*Defined in [index.ts:27](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L27)*
 
 #### Type declaration:
 
@@ -83,7 +83,7 @@ ___
 
 Ƭ **WeakAssert**: *function*
 
-*Defined in [index.ts:3](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L3)*
+*Defined in [index.ts:3](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L3)*
 
 #### Type declaration:
 
@@ -102,7 +102,7 @@ Name | Type |
 
 • **baseAssert**: *function* = defaultAssert
 
-*Defined in [index.ts:11](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L11)*
+*Defined in [index.ts:11](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L11)*
 
 #### Type declaration:
 
@@ -121,7 +121,7 @@ Name | Type |
 
 ▸ **assert**(`condition`: unknown, `message`: undefined | string): *void*
 
-*Defined in [index.ts:13](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L13)*
+*Defined in [index.ts:13](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L13)*
 
 **Parameters:**
 
@@ -138,7 +138,7 @@ ___
 
 ▸ **check**‹**T**›(`assertT`: [Assert](README.md#assert)‹T›): *[Check](README.md#check)‹T›*
 
-*Defined in [index.ts:187](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L187)*
+*Defined in [index.ts:187](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L187)*
 
 **Type parameters:**
 
@@ -158,7 +158,7 @@ ___
 
 ▸ **defaultAssert**(`condition`: unknown, `message`: undefined | string): *void*
 
-*Defined in [index.ts:5](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L5)*
+*Defined in [index.ts:5](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L5)*
 
 **Parameters:**
 
@@ -175,7 +175,7 @@ ___
 
 ▸ **expectedToBe**(`type`: string): *string*
 
-*Defined in [index.ts:1](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L1)*
+*Defined in [index.ts:1](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L1)*
 
 **Parameters:**
 
@@ -191,7 +191,7 @@ ___
 
 ▸ **isArray**(`input`: unknown, `message`: string): *asserts input is unknown[]*
 
-*Defined in [index.ts:106](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L106)*
+*Defined in [index.ts:106](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L106)*
 
 **Parameters:**
 
@@ -208,7 +208,7 @@ ___
 
 ▸ **isArrayOfType**‹**T**›(`input`: unknown, `assertT`: function, `message`: string, `itemMessage`: string): *asserts input is T[]*
 
-*Defined in [index.ts:125](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L125)*
+*Defined in [index.ts:125](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L125)*
 
 **Type parameters:**
 
@@ -241,7 +241,7 @@ ___
 
 ▸ **isBoolean**(`input`: unknown, `message`: string): *asserts input is boolean*
 
-*Defined in [index.ts:54](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L54)*
+*Defined in [index.ts:54](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L54)*
 
 **Parameters:**
 
@@ -258,7 +258,7 @@ ___
 
 ▸ **isDate**(`input`: unknown, `message`: string): *asserts input is Date*
 
-*Defined in [index.ts:75](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L75)*
+*Defined in [index.ts:75](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L75)*
 
 **Parameters:**
 
@@ -275,7 +275,7 @@ ___
 
 ▸ **isExactly**‹**T**›(`input`: unknown, `value`: T, `message`: string): *asserts input is T*
 
-*Defined in [index.ts:46](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L46)*
+*Defined in [index.ts:46](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L46)*
 
 **Type parameters:**
 
@@ -297,7 +297,7 @@ ___
 
 ▸ **isInstanceOf**‹**T**›(`input`: unknown, `constructor`: object, `message`: string): *asserts input is T*
 
-*Defined in [index.ts:171](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L171)*
+*Defined in [index.ts:171](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L171)*
 
 **Type parameters:**
 
@@ -319,7 +319,7 @@ ___
 
 ▸ **isNotNull**‹**T**›(`input`: null | T, `message`: string): *asserts input is T*
 
-*Defined in [index.ts:32](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L32)*
+*Defined in [index.ts:32](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L32)*
 
 **Type parameters:**
 
@@ -340,7 +340,7 @@ ___
 
 ▸ **isNotUndefined**‹**T**›(`input`: undefined | T, `message`: string): *asserts input is T*
 
-*Defined in [index.ts:39](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L39)*
+*Defined in [index.ts:39](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L39)*
 
 **Type parameters:**
 
@@ -361,7 +361,7 @@ ___
 
 ▸ **isNumber**(`input`: unknown, `message`: string): *asserts input is number*
 
-*Defined in [index.ts:61](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L61)*
+*Defined in [index.ts:61](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L61)*
 
 **Parameters:**
 
@@ -378,7 +378,7 @@ ___
 
 ▸ **isOneOf**‹**T**›(`input`: unknown, `values`: keyof T[], `message`: string): *asserts input is T*
 
-*Defined in [index.ts:148](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L148)*
+*Defined in [index.ts:148](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L148)*
 
 **Type parameters:**
 
@@ -400,7 +400,7 @@ ___
 
 ▸ **isOneOfType**‹**T**›(`input`: unknown, `assertT`: [Assert](README.md#assert)‹T›[], `message`: string, `itemMessage?`: undefined | string): *asserts input is T*
 
-*Defined in [index.ts:156](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L156)*
+*Defined in [index.ts:156](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L156)*
 
 **Type parameters:**
 
@@ -423,7 +423,7 @@ ___
 
 ▸ **isOptionOfType**‹**T**›(`input`: unknown, `assertT`: [Assert](README.md#assert)‹T›, `message`: string): *asserts input is T | undefined*
 
-*Defined in [index.ts:137](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L137)*
+*Defined in [index.ts:137](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L137)*
 
 **Type parameters:**
 
@@ -445,7 +445,7 @@ ___
 
 ▸ **isPromise**(`input`: unknown, `message`: string): *asserts input is Promise<unknown>*
 
-*Defined in [index.ts:180](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L180)*
+*Defined in [index.ts:180](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L180)*
 
 **Parameters:**
 
@@ -462,7 +462,7 @@ ___
 
 ▸ **isRecord**(`input`: unknown, `message`: string): *asserts input is Record<string, unknown>*
 
-*Defined in [index.ts:82](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L82)*
+*Defined in [index.ts:82](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L82)*
 
 **Parameters:**
 
@@ -479,7 +479,7 @@ ___
 
 ▸ **isRecordOfType**‹**T**›(`input`: unknown, `assertT`: function, `message`: string, `itemMessage`: string): *asserts input is Record<string, T>*
 
-*Defined in [index.ts:113](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L113)*
+*Defined in [index.ts:113](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L113)*
 
 **Type parameters:**
 
@@ -512,7 +512,7 @@ ___
 
 ▸ **isRecordWithKeys**‹**K**›(`input`: unknown, `keys`: K[], `message`: string): *asserts input is object*
 
-*Defined in [index.ts:93](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L93)*
+*Defined in [index.ts:93](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L93)*
 
 **Type parameters:**
 
@@ -534,7 +534,7 @@ ___
 
 ▸ **isString**(`input`: unknown, `message`: string): *asserts input is string*
 
-*Defined in [index.ts:68](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L68)*
+*Defined in [index.ts:68](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L68)*
 
 **Parameters:**
 
@@ -551,7 +551,7 @@ ___
 
 ▸ **safeJsonParse**(`json`: string): *unknown*
 
-*Defined in [index.ts:29](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L29)*
+*Defined in [index.ts:29](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L29)*
 
 **Parameters:**
 
@@ -567,7 +567,7 @@ ___
 
 ▸ **setBaseAssert**(`assert?`: [WeakAssert](README.md#weakassert)): *void*
 
-*Defined in [index.ts:16](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L16)*
+*Defined in [index.ts:16](https://github.com/elierotenberg/typed-assert/blob/b20fb5f/src/index.ts#L16)*
 
 **Parameters:**
 
