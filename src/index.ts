@@ -1,0 +1,198 @@
+const expectedToBe = (type: string): string => `expected to be ${type}`;
+
+export type WeakAssert = (input: unknown, message?: string) => void;
+
+export const defaultAssert: WeakAssert = (condition, message) => {
+  if (!condition) {
+    throw new TypeError(message);
+  }
+};
+
+let baseAssert = defaultAssert;
+
+const assert: Assert<true> = (condition, message) =>
+  baseAssert(condition, message);
+
+export function setBaseAssert(assert?: WeakAssert): void {
+  if (assert) {
+    baseAssert = assert;
+  }
+}
+
+export type Assert<T> = (
+  input: unknown,
+  message?: string,
+) => asserts input is T;
+
+export type Check<T> = (input: unknown) => input is T;
+
+export const safeJsonParse = (json: string): unknown =>
+  JSON.parse(json) as unknown;
+
+export function isNotNull<T>(
+  input: null | T,
+  message: string = expectedToBe("not null"),
+): asserts input is T {
+  assert(input !== null, message);
+}
+
+export function isNotUndefined<T>(
+  input: undefined | T,
+  message: string = expectedToBe("not undefined"),
+): asserts input is T {
+  assert(input !== undefined, message);
+}
+
+export function isExactly<T>(
+  input: unknown,
+  value: T,
+  message = expectedToBe(`exactly ${value}`),
+): asserts input is T {
+  assert(input === value, message);
+}
+
+export function isBoolean(
+  input: unknown,
+  message: string = expectedToBe("a boolean"),
+): asserts input is boolean {
+  assert(typeof input === "boolean", message);
+}
+
+export function isNumber(
+  input: unknown,
+  message: string = expectedToBe("a number"),
+): asserts input is number {
+  assert(typeof input === "number", message);
+}
+
+export function isString(
+  input: unknown,
+  message: string = expectedToBe("a string"),
+): asserts input is string {
+  assert(typeof input === "string", message);
+}
+
+export function isDate(
+  input: unknown,
+  message: string = expectedToBe("a Date"),
+): asserts input is Date {
+  assert(input instanceof Date, message);
+}
+
+export function isRecord(
+  input: unknown,
+  message: string = expectedToBe("a record"),
+): asserts input is Record<string, unknown> {
+  assert(typeof input === "object", message);
+  isNotNull(input, message);
+  for (const key of Object.keys(input as Record<string, unknown>)) {
+    isString(key, message);
+  }
+}
+
+export function isRecordWithKeys<K extends string>(
+  input: unknown,
+  keys: K[],
+  message = expectedToBe(`a record with keys ${keys.join(", ")}`),
+): asserts input is {
+  readonly [Key in K]: unknown;
+} {
+  isRecord(input, message);
+  for (const key of keys) {
+    isNotUndefined(input[key]);
+  }
+}
+
+export function isArray(
+  input: unknown,
+  message: string = expectedToBe("an array"),
+): asserts input is unknown[] {
+  assert(Array.isArray(input), message);
+}
+
+export function isRecordOfType<T>(
+  input: unknown,
+  assertT: (input: unknown, message?: string) => asserts input is T,
+  message = expectedToBe("a record of given type"),
+  itemMessage = expectedToBe("of given type"),
+): asserts input is Record<string, T> {
+  isRecord(input, message);
+  for (const item of Object.values(input)) {
+    assertT(item, itemMessage);
+  }
+}
+
+export function isArrayOfType<T>(
+  input: unknown,
+  assertT: (input: unknown, message?: string) => asserts input is T,
+  message = expectedToBe("an array of given type"),
+  itemMessage = expectedToBe("of given type"),
+): asserts input is T[] {
+  isArray(input, message);
+  for (const item of input) {
+    assertT(item, itemMessage);
+  }
+}
+
+export function isOptionOfType<T>(
+  input: unknown,
+  assertT: Assert<T>,
+  message = expectedToBe("option of given type"),
+): asserts input is T | undefined {
+  if (input === undefined) {
+    return;
+  }
+  assertT(input, message);
+}
+
+export function isOneOf<T>(
+  input: unknown,
+  values: readonly T[],
+  message: string = expectedToBe(`one of ${values.join(", ")}`),
+): asserts input is T {
+  assert(values.includes(input as T), message);
+}
+
+export function isOneOfType<T>(
+  input: unknown,
+  assertT: Assert<T>[],
+  message: string = expectedToBe(`one of type`),
+  itemMessage?: string,
+): asserts input is T {
+  for (const assert of assertT) {
+    try {
+      (assert as WeakAssert)(input as T, itemMessage);
+      return;
+    } catch {}
+  }
+  throw new TypeError(message);
+}
+
+export function isInstanceOf<T>(
+  input: unknown,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  constructor: new (...args: any[]) => T,
+  message = expectedToBe("an instance of given constructor"),
+): asserts input is T {
+  assert(input instanceof constructor, message);
+}
+
+export function isPromise(
+  input: unknown,
+  message = expectedToBe("a promise"),
+): asserts input is Promise<unknown> {
+  isInstanceOf(input, Promise, message);
+}
+
+export function check<T>(assertT: Assert<T>): Check<T> {
+  return (input: unknown): input is T => {
+    try {
+      assertT(input);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+}
+
+export default assert;

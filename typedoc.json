@@ -1,0 +1,10 @@
+{
+  "mode": "file",
+  "includeDeclarations": true,
+  "excludeNotExported": true,
+  "exclude": "**/__tests__/**/*",
+  "excludeExternals": true,
+  "inputFiles": "src/**/*.ts",
+  "out": "doc",
+  "readme": "none"
+}

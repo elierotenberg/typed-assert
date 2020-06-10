@@ -1,0 +1,46 @@
+{
+  "name": "typed-assert",
+  "version": "1.0.0",
+  "description": "typesafe assertion library for TypeScript 3.7+",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "jest",
+    "clean:doc": "rm -rf doc && rm -rf API.md",
+    "build:doc": "npm run clean:doc && typedoc && mv doc/README.md API.md && rm -rf doc",
+    "clean:ts": "rm -rf build",
+    "build:ts": "npm run clean:ts && tsc -p .",
+    "build": "npm run build:doc && npm run build:ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elierotenberg/typed-assert.git"
+  },
+  "keywords": [
+    "assert",
+    "typescript"
+  ],
+  "author": "Elie Rotenberg <elie@rotenberg.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elierotenberg/typed-assert/issues"
+  },
+  "homepage": "https://github.com/elierotenberg/typed-assert#readme",
+  "devDependencies": {
+    "@types/node": "^14.0.13",
+    "@types/jest": "^26.0.0",
+    "@typescript-eslint/eslint-plugin": "^3.2.0",
+    "@typescript-eslint/parser": "^3.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint": "^7.2.0",
+    "jest": "^26.0.1",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.1.0",
+    "typedoc": "^0.17.7",
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "typedoc-plugin-markdown": "^2.3.1"
+  }
+}
