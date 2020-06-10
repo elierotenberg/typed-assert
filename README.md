@@ -1,8 +1,16 @@
-### typed-assert
+# `typed-assert`
 
 `typed-assert` is a typesafe assertion library implementing the [TS 3.7 Assertion Functions](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions) API, without external dependencies.
 
 See the [documentation](API.md).
+
+### Install
+
+```npm install typed-assert```
+
+or
+
+```yarn add typed-assert```
 
 ### Why is it useful?
 
