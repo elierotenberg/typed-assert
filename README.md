@@ -101,7 +101,7 @@ function assertCustomType(input: unknown): asserts input is ICustomType {
   t.isRecordWithKeys(input.a, ["b", "d"]);
   t.isExactly(input.a.b, "c");
   t.isString(input.a.d);
-  t.isOption(input.f, asset.isNumber);
+  t.isOption(input.f, t.isNumber);
 }
 
 const v = {
@@ -125,7 +125,7 @@ It is especially convenient when combined with functional operations such as `Ar
 const t = ["a", 3, "c", 4, null, 2]
   .filter(t.check(t.isNumber))
   .map(x => x % 0 ? x : null)
-  .filter(asset.check(t.isNotNull));
+  .filter(t.check(t.isNotNull));
 // t: number[] = [4, 2]
 ```
 
