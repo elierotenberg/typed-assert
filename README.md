@@ -14,11 +14,11 @@ For example, `JSON.stringify` returns `any`, which is not typesafe. With `typed-
 const parseConfigFile = (file: string): { readonly a: string, readonly b: number } => {
   const contents = JSON.parse(fs.readFileSync(file, { encoding: 'utf8'})) as unknown;
   // contents is "unknown" instead of any, because we don't trust the input yet
-  assertRecord(contents);
+  assert.isRecord(contents);
   // contents is "Record<string, unknown>"
-  assertString(contents.a);
+  assert.isString(contents.a);
   // contents.a is "string"
-  assertNumber(contents.b):
+  assert.isNumber(contents.b):
   // contents.b is "number";
   return {
     a: contents.a,
@@ -46,13 +46,13 @@ chai.assert.isNotNull(u);
 chai.assert.typeof(u.a, "string");
 // TS Error (ts2571): u is "unknown"
 
-import { assertRecord, assertString, assertNumber } from "typed-assert";
+import * as assert from "typed-assert";
 
-assertRecord(u);
+assert.isRecord(u);
 // u is Record<string, unknown>
-assertString(u.a);
+assert.isString(u.a);
 // u.a is string
-assertNumber(u.b);
+assert.isNumber(u.b);
 // u.b is number
 
 const v: { a: string; b: number } = u;
@@ -117,11 +117,14 @@ export const safeJsonParse = (json: string): unknown =>
 
 This library is designed to work in the browser as well as in Node without external dependencies, and by default does not use the `assert` module from the Node stdlib, so it ships with a very basic `assert` implementation:
 ```ts
+export type WeakAssert = (input: unknown, message?: string) => void;
+
 export const defaultAssert: WeakAssert = (condition, message) => {
   if (!condition) {
     throw new TypeError(message);
   }
 };
+
 ```
 
 It is however possible to configure the library to use a provided base `assert` function, such as the native `assert` module:
@@ -159,15 +162,18 @@ const isExactlyNull = (input: unknown): asserts input is null => assert(input ==
 // No problem so far
 
 isExactlyNull("a", null):
+// Won't compile:
+// Assertions require the call target to be an
+//  identifier or qualified name.ts(2776)
 ```
 
 It is however possible to use arrow function with explicit typing of the left-hand operand:
 ```ts
 const isExactlyNull: (input: unknown) => asserts input is null = (input) =>
   assert(input === null);
-// No problem so far
 
 isExactlyNull("a");
+// No problem
 ```
 
 To simplify this pattern, this library also exports the `Assert<T>` type as defined below:
