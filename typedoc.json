@@ -6,5 +6,6 @@
   "excludeExternals": true,
   "inputFiles": "src/**/*.ts",
   "out": "doc",
-  "readme": "none"
+  "readme": "none",
+  "gitRevision": "master"
 }

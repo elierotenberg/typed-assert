@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "clean:doc": "rm -rf doc && rm -rf API.md",
-    "build:doc": "npm run clean:doc && typedoc && mv doc/README.md API.md && rm -rf doc",
+    "build:doc": "npm run clean:doc && typedoc && sed s/README.md/API.md/ doc/README.md > API.md && rm -rf doc",
     "clean:ts": "rm -rf build",
     "build:ts": "npm run clean:ts && tsc -p .",
     "build": "npm run build:doc && npm run build:ts"
