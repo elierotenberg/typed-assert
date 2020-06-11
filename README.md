@@ -124,7 +124,7 @@ It is especially convenient when combined with functional operations such as `Ar
 ```ts
 const t = ["a", 3, "c", 4, null, 2]
   .filter(t.check(t.isNumber))
-  .map(x => x % 0 ? x : null)
+  .map(x => x % 2 === 0 ? x : null) // x: number
   .filter(t.check(t.isNotNull));
 // t: number[] = [4, 2]
 ```
