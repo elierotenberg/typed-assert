@@ -167,7 +167,7 @@ export function isOneOfType<T>(
     try {
       (assert as WeakAssert)(input as T, itemMessage);
       return;
-    } catch {}
+    } catch (_) {}
   }
   throw new TypeError(message);
 }
