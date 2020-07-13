@@ -195,7 +195,7 @@ export function check<Input, Output>(
     try {
       assertT(input);
       return true;
-    } catch {
+    } catch (_) {
       return false;
     }
   };

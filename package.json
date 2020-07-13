@@ -1,6 +1,6 @@
 {
   "name": "typed-assert",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "typesafe assertion library for TypeScript 3.7+",
   "main": "build/index.js",
   "scripts": {
