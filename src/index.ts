@@ -33,6 +33,10 @@ export function setBaseAssert(assert?: WeakAssert): void {
 export const safeJsonParse = (json: string): unknown =>
   JSON.parse(json) as unknown;
 
+export function isUnknown(_input: unknown): _input is unknown {
+  return true;
+}
+
 export function isNotNull<T>(
   input: null | T,
   message: string = expectedToBe("not null"),

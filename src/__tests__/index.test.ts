@@ -53,6 +53,13 @@ describe("typed-assert", () => {
   for (const [label, baseAssert] of baseAsserts) {
     describe(label, () => {
       t.setBaseAssert(baseAssert);
+
+      test("isUnknown", () => {
+        for (const value of Object.values(fixtures)) {
+          expect(() => t.isUnknown(value)).not.toThrow();
+        }
+      });
+
       test("isNotNull", () => {
         const v = orNull(fixtures.string);
         t.isNotNull(v);
