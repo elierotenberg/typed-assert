@@ -1,10 +1,9 @@
 {
-  "mode": "file",
-  "includeDeclarations": true,
-  "excludeNotExported": true,
+  "entryPoints": [
+    "./src/index.ts"
+  ],
   "exclude": "**/__tests__/**/*",
   "excludeExternals": true,
-  "inputFiles": "src/**/*.ts",
   "out": "doc",
   "readme": "none",
   "gitRevision": "master"
