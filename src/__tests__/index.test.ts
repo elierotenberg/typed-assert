@@ -59,6 +59,18 @@ describe("typed-assert", () => {
           expect(() => t.isUnknown(value)).not.toThrow();
         }
       });
+      
+      test("isNever", () => {
+        expect(() => {
+          const value = 'a' as 'a' | 'b'
+          switch (value) {
+            case "a":
+            case "b":
+              return
+          }
+          t.isNever(value)
+        }).not.toThrow();
+      });
 
       test("isNotNull", () => {
         const v = orNull(fixtures.string);
