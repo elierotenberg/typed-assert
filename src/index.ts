@@ -37,6 +37,13 @@ export function isUnknown(_input: unknown): _input is unknown {
   return true;
 }
 
+export function isNever(
+  _input: never,
+  message: string = expectedToBe("unreachable"),
+): never {
+  throw new TypeError(message)
+}
+
 export function isNotNull<T>(
   input: null | T,
   message: string = expectedToBe("not null"),
