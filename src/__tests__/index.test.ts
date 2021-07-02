@@ -59,16 +59,16 @@ describe("typed-assert", () => {
           expect(() => t.isUnknown(value)).not.toThrow();
         }
       });
-      
+
       test("isNever", () => {
         expect(() => {
-          const value = 'a' as 'a' | 'b'
+          const value = "a" as "a" | "b";
           switch (value) {
             case "a":
             case "b":
-              return
+              return;
           }
-          t.isNever(value)
+          t.isNever(value);
         }).not.toThrow();
       });
 

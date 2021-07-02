@@ -2,558 +2,724 @@ typed-assert
 
 # typed-assert
 
-## Index
+## Table of contents
 
 ### Type aliases
 
-* [Assert](API.md#assert)
-* [Check](API.md#check)
-* [SubType](API.md#subtype)
-* [WeakAssert](API.md#weakassert)
+- [Assert](API.md#assert)
+- [Check](API.md#check)
+- [SubType](API.md#subtype)
+- [WeakAssert](API.md#weakassert)
 
 ### Functions
 
-* [assert](API.md#assert)
-* [check](API.md#check)
-* [defaultAssert](API.md#defaultassert)
-* [isArray](API.md#isarray)
-* [isArrayOfType](API.md#isarrayoftype)
-* [isBoolean](API.md#isboolean)
-* [isDate](API.md#isdate)
-* [isExactly](API.md#isexactly)
-* [isInstanceOf](API.md#isinstanceof)
-* [isNotNull](API.md#isnotnull)
-* [isNotUndefined](API.md#isnotundefined)
-* [isNumber](API.md#isnumber)
-* [isOneOf](API.md#isoneof)
-* [isOneOfType](API.md#isoneoftype)
-* [isOptionOfType](API.md#isoptionoftype)
-* [isPromise](API.md#ispromise)
-* [isRecord](API.md#isrecord)
-* [isRecordOfType](API.md#isrecordoftype)
-* [isRecordWithKeys](API.md#isrecordwithkeys)
-* [isString](API.md#isstring)
-* [isUnknown](API.md#isunknown)
-* [safeJsonParse](API.md#safejsonparse)
-* [setBaseAssert](API.md#setbaseassert)
+- [assert](API.md#assert)
+- [check](API.md#check)
+- [defaultAssert](API.md#defaultassert)
+- [isArray](API.md#isarray)
+- [isArrayOfType](API.md#isarrayoftype)
+- [isBoolean](API.md#isboolean)
+- [isDate](API.md#isdate)
+- [isExactly](API.md#isexactly)
+- [isInstanceOf](API.md#isinstanceof)
+- [isNever](API.md#isnever)
+- [isNotNull](API.md#isnotnull)
+- [isNotUndefined](API.md#isnotundefined)
+- [isNumber](API.md#isnumber)
+- [isOneOf](API.md#isoneof)
+- [isOneOfType](API.md#isoneoftype)
+- [isOptionOfType](API.md#isoptionoftype)
+- [isPromise](API.md#ispromise)
+- [isRecord](API.md#isrecord)
+- [isRecordOfType](API.md#isrecordoftype)
+- [isRecordWithKeys](API.md#isrecordwithkeys)
+- [isString](API.md#isstring)
+- [isUnknown](API.md#isunknown)
+- [safeJsonParse](API.md#safejsonparse)
+- [setBaseAssert](API.md#setbaseassert)
 
 ## Type aliases
 
 ### Assert
 
-Ƭ **Assert**<Input, Output\>: (`input`: Input, `message?`: *string*) => asserts input is SubType<Input, Output\>
+Ƭ **Assert**<`Input`, `Output`\>: (`input`: `Input`, `message?`: `string`) => asserts input is SubType<Input, Output\>
 
-#### Type parameters:
+#### Type parameters
 
-Name | Default |
------- | ------ |
-`Input` | *unknown* |
-`Output` | Input |
+| Name | Type |
+| :------ | :------ |
+| `Input` | `unknown` |
+| `Output` | `Input` |
 
-Defined in: [index.ts:7](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L7)
+#### Type declaration
+
+▸ (`input`, `message?`): asserts input is SubType<Input, Output\>
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `input` | `Input` |
+| `message?` | `string` |
+
+##### Returns
+
+asserts input is SubType<Input, Output\>
+
+#### Defined in
+
+[index.ts:7](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L7)
 
 ___
 
 ### Check
 
-Ƭ **Check**<Input, Output\>: (`input`: Input) => input is SubType<Input, Output\>
+Ƭ **Check**<`Input`, `Output`\>: (`input`: `Input`) => input is SubType<Input, Output\>
 
-#### Type parameters:
+#### Type parameters
 
-Name | Default |
------- | ------ |
-`Input` | *unknown* |
-`Output` | Input |
+| Name | Type |
+| :------ | :------ |
+| `Input` | `unknown` |
+| `Output` | `Input` |
 
-Defined in: [index.ts:12](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L12)
+#### Type declaration
+
+▸ (`input`): input is SubType<Input, Output\>
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `input` | `Input` |
+
+##### Returns
+
+input is SubType<Input, Output\>
+
+#### Defined in
+
+[index.ts:12](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L12)
 
 ___
 
 ### SubType
 
-Ƭ **SubType**<Input, Output\>: Output *extends* Input ? Output : *never*
+Ƭ **SubType**<`Input`, `Output`\>: `Output` extends `Input` ? `Output` : `never`
 
-#### Type parameters:
+#### Type parameters
 
-Name |
------- |
-`Input` |
-`Output` |
+| Name |
+| :------ |
+| `Input` |
+| `Output` |
 
-Defined in: [index.ts:5](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L5)
+#### Defined in
+
+[index.ts:5](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L5)
 
 ___
 
 ### WeakAssert
 
-Ƭ **WeakAssert**: (`input`: *unknown*, `message?`: *string*) => *void*
+Ƭ **WeakAssert**: (`input`: `unknown`, `message?`: `string`) => `void`
 
-Defined in: [index.ts:3](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L3)
+#### Type declaration
+
+▸ (`input`, `message?`): `void`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
+| `message?` | `string` |
+
+##### Returns
+
+`void`
+
+#### Defined in
+
+[index.ts:3](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L3)
 
 ## Functions
 
 ### assert
 
-▸ `Const`**assert**(`input`: *boolean*, `message?`: *string*): asserts input is true
+▸ `Const` **assert**(`input`, `message?`): asserts input is true
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
------- | ------ |
-`input` | *boolean* |
-`message?` | *string* |
+| Name | Type |
+| :------ | :------ |
+| `input` | `boolean` |
+| `message?` | `string` |
 
-**Returns:** asserts input is true
+#### Returns
 
-Defined in: [index.ts:24](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L24)
+asserts input is true
+
+#### Defined in
+
+[index.ts:24](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L24)
 
 ___
 
 ### check
 
-▸ **check**<Input, Output\>(`assertT`: [*Assert*](API.md#assert)<Input, Output\>): [*Check*](README.md#check)<Input, Output\>
+▸ **check**<`Input`, `Output`\>(`assertT`): [`Check`](API.md#check)<`Input`, `Output`\>
 
-#### Type parameters:
+#### Type parameters
 
-Name |
------- |
-`Input` |
-`Output` |
+| Name |
+| :------ |
+| `Input` |
+| `Output` |
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
------- | ------ |
-`assertT` | [*Assert*](API.md#assert)<Input, Output\> |
+| Name | Type |
+| :------ | :------ |
+| `assertT` | [`Assert`](API.md#assert)<`Input`, `Output`\> |
 
-**Returns:** [*Check*](API.md#check)<Input, Output\>
+#### Returns
 
-Defined in: [index.ts:195](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L195)
+[`Check`](API.md#check)<`Input`, `Output`\>
+
+#### Defined in
+
+[index.ts:202](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L202)
 
 ___
 
 ### defaultAssert
 
-▸ `Const`**defaultAssert**(`input`: *unknown*, `message?`: *string*): *void*
+▸ `Const` **defaultAssert**(`input`, `message?`): `void`
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
------- | ------ |
-`input` | *unknown* |
-`message?` | *string* |
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
+| `message?` | `string` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [index.ts:16](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L16)
+`void`
+
+#### Defined in
+
+[index.ts:16](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L16)
 
 ___
 
 ### isArray
 
-▸ **isArray**(`input`: *unknown*, `message?`: *string*): asserts input is unknown[]
+▸ **isArray**(`input`, `message?`): asserts input is unknown[]
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *unknown* | - |
-`message` | *string* | ... |
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
+| `message` | `string` |
 
-**Returns:** asserts input is unknown[]
+#### Returns
 
-Defined in: [index.ts:114](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L114)
+asserts input is unknown[]
+
+#### Defined in
+
+[index.ts:121](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L121)
 
 ___
 
 ### isArrayOfType
 
-▸ **isArrayOfType**<T\>(`input`: *unknown*, `assertT`: [*Assert*](API.md#assert)<*unknown*, T\>, `message?`: *string*, `itemMessage?`: *string*): asserts input is T[]
+▸ **isArrayOfType**<`T`\>(`input`, `assertT`, `message?`, `itemMessage?`): asserts input is T[]
 
-#### Type parameters:
+#### Type parameters
 
-Name |
------- |
-`T` |
+| Name |
+| :------ |
+| `T` |
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *unknown* | - |
-`assertT` | [*Assert*](API.md#assert)<*unknown*, T\> | - |
-`message` | *string* | ... |
-`itemMessage` | *string* | ... |
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
+| `assertT` | [`Assert`](API.md#assert)<`unknown`, `T`\> |
+| `message` | `string` |
+| `itemMessage` | `string` |
 
-**Returns:** asserts input is T[]
+#### Returns
 
-Defined in: [index.ts:133](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L133)
+asserts input is T[]
+
+#### Defined in
+
+[index.ts:140](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L140)
 
 ___
 
 ### isBoolean
 
-▸ **isBoolean**(`input`: *unknown*, `message?`: *string*): asserts input is boolean
+▸ **isBoolean**(`input`, `message?`): asserts input is boolean
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *unknown* | - |
-`message` | *string* | ... |
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
+| `message` | `string` |
 
-**Returns:** asserts input is boolean
+#### Returns
 
-Defined in: [index.ts:62](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L62)
+asserts input is boolean
+
+#### Defined in
+
+[index.ts:69](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L69)
 
 ___
 
 ### isDate
 
-▸ **isDate**(`input`: *unknown*, `message?`: *string*): asserts input is Date
+▸ **isDate**(`input`, `message?`): asserts input is Date
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *unknown* | - |
-`message` | *string* | ... |
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
+| `message` | `string` |
 
-**Returns:** asserts input is Date
+#### Returns
 
-Defined in: [index.ts:83](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L83)
+asserts input is Date
+
+#### Defined in
+
+[index.ts:90](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L90)
 
 ___
 
 ### isExactly
 
-▸ **isExactly**<Input, Output\>(`input`: Input, `value`: Output, `message?`: *string*): asserts input is SubType<Input, Output\>
+▸ **isExactly**<`Input`, `Output`\>(`input`, `value`, `message?`): asserts input is SubType<Input, Output\>
 
-#### Type parameters:
+#### Type parameters
 
-Name |
------- |
-`Input` |
-`Output` |
+| Name |
+| :------ |
+| `Input` |
+| `Output` |
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | Input | - |
-`value` | Output | - |
-`message` | *string* | ... |
+| Name | Type |
+| :------ | :------ |
+| `input` | `Input` |
+| `value` | `Output` |
+| `message` | `string` |
 
-**Returns:** asserts input is SubType<Input, Output\>
+#### Returns
 
-Defined in: [index.ts:54](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L54)
+asserts input is SubType<Input, Output\>
+
+#### Defined in
+
+[index.ts:61](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L61)
 
 ___
 
 ### isInstanceOf
 
-▸ **isInstanceOf**<T\>(`input`: *unknown*, `constructor`: (...`args`: *any*[]) => T, `message?`: *string*): asserts input is T
+▸ **isInstanceOf**<`T`\>(`input`, `constructor`, `message?`): asserts input is T
 
-#### Type parameters:
+#### Type parameters
 
-Name |
------- |
-`T` |
+| Name |
+| :------ |
+| `T` |
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *unknown* | - |
-`constructor` | (...`args`: *any*[]) => T | - |
-`message` | *string* | ... |
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
+| `constructor` | (...`args`: `any`[]) => `T` |
+| `message` | `string` |
 
-**Returns:** asserts input is T
+#### Returns
 
-Defined in: [index.ts:179](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L179)
+asserts input is T
+
+#### Defined in
+
+[index.ts:186](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L186)
+
+___
+
+### isNever
+
+▸ **isNever**(`_input`, `message?`): `never`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `_input` | `never` |
+| `message` | `string` |
+
+#### Returns
+
+`never`
+
+#### Defined in
+
+[index.ts:40](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L40)
 
 ___
 
 ### isNotNull
 
-▸ **isNotNull**<T\>(`input`: *null* \| T, `message?`: *string*): asserts input is T
+▸ **isNotNull**<`T`\>(`input`, `message?`): asserts input is T
 
-#### Type parameters:
+#### Type parameters
 
-Name |
------- |
-`T` |
+| Name |
+| :------ |
+| `T` |
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *null* \| T | - |
-`message` | *string* | ... |
+| Name | Type |
+| :------ | :------ |
+| `input` | ``null`` \| `T` |
+| `message` | `string` |
 
-**Returns:** asserts input is T
+#### Returns
 
-Defined in: [index.ts:40](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L40)
+asserts input is T
+
+#### Defined in
+
+[index.ts:47](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L47)
 
 ___
 
 ### isNotUndefined
 
-▸ **isNotUndefined**<T\>(`input`: *undefined* \| T, `message?`: *string*): asserts input is T
+▸ **isNotUndefined**<`T`\>(`input`, `message?`): asserts input is T
 
-#### Type parameters:
+#### Type parameters
 
-Name |
------- |
-`T` |
+| Name |
+| :------ |
+| `T` |
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *undefined* \| T | - |
-`message` | *string* | ... |
+| Name | Type |
+| :------ | :------ |
+| `input` | `undefined` \| `T` |
+| `message` | `string` |
 
-**Returns:** asserts input is T
+#### Returns
 
-Defined in: [index.ts:47](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L47)
+asserts input is T
+
+#### Defined in
+
+[index.ts:54](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L54)
 
 ___
 
 ### isNumber
 
-▸ **isNumber**(`input`: *unknown*, `message?`: *string*): asserts input is number
+▸ **isNumber**(`input`, `message?`): asserts input is number
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *unknown* | - |
-`message` | *string* | ... |
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
+| `message` | `string` |
 
-**Returns:** asserts input is number
+#### Returns
 
-Defined in: [index.ts:69](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L69)
+asserts input is number
+
+#### Defined in
+
+[index.ts:76](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L76)
 
 ___
 
 ### isOneOf
 
-▸ **isOneOf**<Input, Output\>(`input`: Input, `values`: readonly Output[], `message?`: *string*): asserts input is SubType<Input, Output\>
+▸ **isOneOf**<`Input`, `Output`\>(`input`, `values`, `message?`): asserts input is SubType<Input, Output\>
 
-#### Type parameters:
+#### Type parameters
 
-Name |
------- |
-`Input` |
-`Output` |
+| Name |
+| :------ |
+| `Input` |
+| `Output` |
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | Input | - |
-`values` | readonly Output[] | - |
-`message` | *string* | ... |
+| Name | Type |
+| :------ | :------ |
+| `input` | `Input` |
+| `values` | readonly `Output`[] |
+| `message` | `string` |
 
-**Returns:** asserts input is SubType<Input, Output\>
+#### Returns
 
-Defined in: [index.ts:156](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L156)
+asserts input is SubType<Input, Output\>
+
+#### Defined in
+
+[index.ts:163](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L163)
 
 ___
 
 ### isOneOfType
 
-▸ **isOneOfType**<T\>(`input`: *unknown*, `assertT`: [*Assert*](API.md#assert)<*unknown*, T\>[], `message?`: *string*, `itemMessage?`: *string*): asserts input is T
+▸ **isOneOfType**<`T`\>(`input`, `assertT`, `message?`, `itemMessage?`): asserts input is T
 
-#### Type parameters:
+#### Type parameters
 
-Name |
------- |
-`T` |
+| Name |
+| :------ |
+| `T` |
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *unknown* | - |
-`assertT` | [*Assert*](API.md#assert)<*unknown*, T\>[] | - |
-`message` | *string* | ... |
-`itemMessage?` | *string* | - |
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
+| `assertT` | [`Assert`](API.md#assert)<`unknown`, `T`\>[] |
+| `message` | `string` |
+| `itemMessage?` | `string` |
 
-**Returns:** asserts input is T
+#### Returns
 
-Defined in: [index.ts:164](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L164)
+asserts input is T
+
+#### Defined in
+
+[index.ts:171](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L171)
 
 ___
 
 ### isOptionOfType
 
-▸ **isOptionOfType**<Input, Output\>(`input`: *undefined* \| Input, `assertT`: [*Assert*](API.md#assert)<Input, Output\>, `message?`: *string*): asserts input is SubType<Input, undefined\> \| SubType<Input, Output\>
+▸ **isOptionOfType**<`Input`, `Output`\>(`input`, `assertT`, `message?`): asserts input is SubType<Input, undefined\> \| SubType<Input, Output\>
 
-#### Type parameters:
+#### Type parameters
 
-Name |
------- |
-`Input` |
-`Output` |
+| Name |
+| :------ |
+| `Input` |
+| `Output` |
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *undefined* \| Input | - |
-`assertT` | [*Assert*](API.md#assert)<Input, Output\> | - |
-`message` | *string* | ... |
+| Name | Type |
+| :------ | :------ |
+| `input` | `Input` \| `undefined` |
+| `assertT` | [`Assert`](API.md#assert)<`Input`, `Output`\> |
+| `message` | `string` |
 
-**Returns:** asserts input is SubType<Input, undefined\> \| SubType<Input, Output\>
+#### Returns
 
-Defined in: [index.ts:145](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L145)
+asserts input is SubType<Input, undefined\> \| SubType<Input, Output\>
+
+#### Defined in
+
+[index.ts:152](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L152)
 
 ___
 
 ### isPromise
 
-▸ **isPromise**(`input`: *unknown*, `message?`: *string*): asserts input is Promise<unknown\>
+▸ **isPromise**(`input`, `message?`): asserts input is Promise<unknown\>
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *unknown* | - |
-`message` | *string* | ... |
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
+| `message` | `string` |
 
-**Returns:** asserts input is Promise<unknown\>
+#### Returns
 
-Defined in: [index.ts:188](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L188)
+asserts input is Promise<unknown\>
+
+#### Defined in
+
+[index.ts:195](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L195)
 
 ___
 
 ### isRecord
 
-▸ **isRecord**(`input`: *unknown*, `message?`: *string*): asserts input is Record<string, unknown\>
+▸ **isRecord**(`input`, `message?`): asserts input is Record<string, unknown\>
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *unknown* | - |
-`message` | *string* | ... |
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
+| `message` | `string` |
 
-**Returns:** asserts input is Record<string, unknown\>
+#### Returns
 
-Defined in: [index.ts:90](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L90)
+asserts input is Record<string, unknown\>
+
+#### Defined in
+
+[index.ts:97](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L97)
 
 ___
 
 ### isRecordOfType
 
-▸ **isRecordOfType**<T\>(`input`: *unknown*, `assertT`: [*Assert*](API.md#assert)<*unknown*, T\>, `message?`: *string*, `itemMessage?`: *string*): asserts input is Record<string, T\>
+▸ **isRecordOfType**<`T`\>(`input`, `assertT`, `message?`, `itemMessage?`): asserts input is Record<string, T\>
 
-#### Type parameters:
+#### Type parameters
 
-Name |
------- |
-`T` |
+| Name |
+| :------ |
+| `T` |
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *unknown* | - |
-`assertT` | [*Assert*](API.md#assert)<*unknown*, T\> | - |
-`message` | *string* | ... |
-`itemMessage` | *string* | ... |
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
+| `assertT` | [`Assert`](API.md#assert)<`unknown`, `T`\> |
+| `message` | `string` |
+| `itemMessage` | `string` |
 
-**Returns:** asserts input is Record<string, T\>
+#### Returns
 
-Defined in: [index.ts:121](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L121)
+asserts input is Record<string, T\>
+
+#### Defined in
+
+[index.ts:128](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L128)
 
 ___
 
 ### isRecordWithKeys
 
-▸ **isRecordWithKeys**<K\>(`input`: *unknown*, `keys`: K[], `message?`: *string*): asserts input is { readonly[Key in string]: unknown}
+▸ **isRecordWithKeys**<`K`\>(`input`, `keys`, `message?`): asserts input is { readonly[Key in string]: unknown}
 
-#### Type parameters:
+#### Type parameters
 
-Name | Type |
------- | ------ |
-`K` | *string* |
+| Name | Type |
+| :------ | :------ |
+| `K` | extends `string` |
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *unknown* | - |
-`keys` | K[] | - |
-`message` | *string* | ... |
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
+| `keys` | `K`[] |
+| `message` | `string` |
 
-**Returns:** asserts input is { readonly[Key in string]: unknown}
+#### Returns
 
-Defined in: [index.ts:101](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L101)
+asserts input is { readonly[Key in string]: unknown}
+
+#### Defined in
+
+[index.ts:108](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L108)
 
 ___
 
 ### isString
 
-▸ **isString**(`input`: *unknown*, `message?`: *string*): asserts input is string
+▸ **isString**(`input`, `message?`): asserts input is string
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value |
------- | ------ | ------ |
-`input` | *unknown* | - |
-`message` | *string* | ... |
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
+| `message` | `string` |
 
-**Returns:** asserts input is string
+#### Returns
 
-Defined in: [index.ts:76](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L76)
+asserts input is string
+
+#### Defined in
+
+[index.ts:83](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L83)
 
 ___
 
 ### isUnknown
 
-▸ **isUnknown**(`_input`: *unknown*): \_input is unknown
+▸ **isUnknown**(`_input`): \_input is unknown
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
------- | ------ |
-`_input` | *unknown* |
+| Name | Type |
+| :------ | :------ |
+| `_input` | `unknown` |
 
-**Returns:** \_input is unknown
+#### Returns
 
-Defined in: [index.ts:36](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L36)
+\_input is unknown
+
+#### Defined in
+
+[index.ts:36](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L36)
 
 ___
 
 ### safeJsonParse
 
-▸ `Const`**safeJsonParse**(`json`: *string*): *unknown*
+▸ `Const` **safeJsonParse**(`json`): `unknown`
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
------- | ------ |
-`json` | *string* |
+| Name | Type |
+| :------ | :------ |
+| `json` | `string` |
 
-**Returns:** *unknown*
+#### Returns
 
-Defined in: [index.ts:33](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L33)
+`unknown`
+
+#### Defined in
+
+[index.ts:33](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L33)
 
 ___
 
 ### setBaseAssert
 
-▸ **setBaseAssert**(`assert?`: [*WeakAssert*](API.md#weakassert)): *void*
+▸ **setBaseAssert**(`assert?`): `void`
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
------- | ------ |
-`assert?` | [*WeakAssert*](API.md#weakassert) |
+| Name | Type |
+| :------ | :------ |
+| `assert?` | [`WeakAssert`](API.md#weakassert) |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [index.ts:27](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L27)
+`void`
+
+#### Defined in
+
+[index.ts:27](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L27)
