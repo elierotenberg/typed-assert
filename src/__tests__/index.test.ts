@@ -98,6 +98,19 @@ describe("typed-assert", () => {
         }
       });
 
+      test("isNeitherNullNorUndefined", () => {
+        const v = orNull(orUndefined(fixtures.string));
+        t.isNeitherNullNorUndefined(v);
+        // v is "string"
+        for (const [key, value] of entries) {
+          if (key === "null" || key === "undefined") {
+            expect(() => t.isNeitherNullNorUndefined(value)).toThrow();
+          } else {
+            expect(() => t.isNeitherNullNorUndefined(value)).not.toThrow();
+          }
+        }
+      });
+
       test("isExactly", () => {
         const v = orUndefined("value");
         t.isExactly(v, "value");

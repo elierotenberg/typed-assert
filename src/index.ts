@@ -58,6 +58,13 @@ export function isNotUndefined<T>(
   assert(input !== undefined, message);
 }
 
+export function isNeitherNullNorUndefined<T>(
+  input: null | undefined | T,
+  message: string = expectedToBe("neither null nor undefined"),
+): asserts input is T {
+  assert(input !== null && input !== undefined, message);
+}
+
 export function isExactly<Input, Output>(
   input: Input,
   value: Output,
