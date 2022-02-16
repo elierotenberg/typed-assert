@@ -22,6 +22,7 @@ typed-assert
 - [isDate](API.md#isdate)
 - [isExactly](API.md#isexactly)
 - [isInstanceOf](API.md#isinstanceof)
+- [isNeitherNullNorUndefined](API.md#isneithernullnorundefined)
 - [isNever](API.md#isnever)
 - [isNotNull](API.md#isnotnull)
 - [isNotUndefined](API.md#isnotundefined)
@@ -179,8 +180,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name | Type                                          |
+| :------ |:----------------------------------------------|
 | `assertT` | [`Assert`](API.md#assert)<`Input`, `Output`\> |
 
 #### Returns
@@ -189,7 +190,7 @@ ___
 
 #### Defined in
 
-[index.ts:202](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L202)
+[index.ts:209](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L209)
 
 ___
 
@@ -231,7 +232,7 @@ asserts input is unknown[]
 
 #### Defined in
 
-[index.ts:121](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L121)
+[index.ts:128](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L128)
 
 ___
 
@@ -247,12 +248,12 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `input` | `unknown` |
+| Name | Type                                       |
+| :------ |:-------------------------------------------|
+| `input` | `unknown`                                  |
 | `assertT` | [`Assert`](API.md#assert)<`unknown`, `T`\> |
-| `message` | `string` |
-| `itemMessage` | `string` |
+| `message` | `string`                                   |
+| `itemMessage` | `string`                                   |
 
 #### Returns
 
@@ -260,7 +261,7 @@ asserts input is T[]
 
 #### Defined in
 
-[index.ts:140](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L140)
+[index.ts:147](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L147)
 
 ___
 
@@ -281,7 +282,7 @@ asserts input is boolean
 
 #### Defined in
 
-[index.ts:69](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L69)
+[index.ts:76](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L76)
 
 ___
 
@@ -302,7 +303,7 @@ asserts input is Date
 
 #### Defined in
 
-[index.ts:90](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L90)
+[index.ts:97](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L97)
 
 ___
 
@@ -331,7 +332,7 @@ asserts input is SubType<Input, Output\>
 
 #### Defined in
 
-[index.ts:61](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L61)
+[index.ts:68](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L68)
 
 ___
 
@@ -359,7 +360,34 @@ asserts input is T
 
 #### Defined in
 
-[index.ts:186](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L186)
+[index.ts:193](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L193)
+
+___
+
+### isNeitherNullNorUndefined
+
+▸ **isNeitherNullNorUndefined**<`T`\>(`input`, `message?`): asserts input is T
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `input` | ``null`` \| `undefined` \| `T` |
+| `message` | `string` |
+
+#### Returns
+
+asserts input is T
+
+#### Defined in
+
+[index.ts:61](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L61)
 
 ___
 
@@ -455,7 +483,7 @@ asserts input is number
 
 #### Defined in
 
-[index.ts:76](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L76)
+[index.ts:83](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L83)
 
 ___
 
@@ -484,7 +512,7 @@ asserts input is SubType<Input, Output\>
 
 #### Defined in
 
-[index.ts:163](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L163)
+[index.ts:170](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L170)
 
 ___
 
@@ -500,12 +528,12 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `input` | `unknown` |
+| Name | Type                                         |
+| :------ |:---------------------------------------------|
+| `input` | `unknown`                                    |
 | `assertT` | [`Assert`](API.md#assert)<`unknown`, `T`\>[] |
-| `message` | `string` |
-| `itemMessage?` | `string` |
+| `message` | `string`                                     |
+| `itemMessage?` | `string`                                     |
 
 #### Returns
 
@@ -513,7 +541,7 @@ asserts input is T
 
 #### Defined in
 
-[index.ts:171](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L171)
+[index.ts:178](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L178)
 
 ___
 
@@ -530,11 +558,11 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `input` | `Input` \| `undefined` |
+| Name | Type                                          |
+| :------ |:----------------------------------------------|
+| `input` | `Input` \                                     | `undefined` |
 | `assertT` | [`Assert`](API.md#assert)<`Input`, `Output`\> |
-| `message` | `string` |
+| `message` | `string`                                      |
 
 #### Returns
 
@@ -542,7 +570,7 @@ asserts input is SubType<Input, undefined\> \| SubType<Input, Output\>
 
 #### Defined in
 
-[index.ts:152](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L152)
+[index.ts:159](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L159)
 
 ___
 
@@ -563,7 +591,7 @@ asserts input is Promise<unknown\>
 
 #### Defined in
 
-[index.ts:195](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L195)
+[index.ts:202](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L202)
 
 ___
 
@@ -584,7 +612,7 @@ asserts input is Record<string, unknown\>
 
 #### Defined in
 
-[index.ts:97](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L97)
+[index.ts:104](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L104)
 
 ___
 
@@ -600,12 +628,12 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `input` | `unknown` |
+| Name | Type                                       |
+| :------ |:-------------------------------------------|
+| `input` | `unknown`                                  |
 | `assertT` | [`Assert`](API.md#assert)<`unknown`, `T`\> |
-| `message` | `string` |
-| `itemMessage` | `string` |
+| `message` | `string`                                   |
+| `itemMessage` | `string`                                   |
 
 #### Returns
 
@@ -613,7 +641,7 @@ asserts input is Record<string, T\>
 
 #### Defined in
 
-[index.ts:128](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L128)
+[index.ts:135](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L135)
 
 ___
 
@@ -641,7 +669,7 @@ asserts input is { readonly[Key in string]: unknown}
 
 #### Defined in
 
-[index.ts:108](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L108)
+[index.ts:115](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L115)
 
 ___
 
@@ -662,7 +690,7 @@ asserts input is string
 
 #### Defined in
 
-[index.ts:83](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L83)
+[index.ts:90](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L90)
 
 ___
 
@@ -712,8 +740,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name | Type                              |
+| :------ |:----------------------------------|
 | `assert?` | [`WeakAssert`](API.md#weakassert) |
 
 #### Returns
