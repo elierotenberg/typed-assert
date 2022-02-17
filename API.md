@@ -22,10 +22,10 @@ typed-assert
 - [isDate](API.md#isdate)
 - [isExactly](API.md#isexactly)
 - [isInstanceOf](API.md#isinstanceof)
-- [isNeitherNullNorUndefined](API.md#isneithernullnorundefined)
 - [isNever](API.md#isnever)
 - [isNotNull](API.md#isnotnull)
 - [isNotUndefined](API.md#isnotundefined)
+- [isNotVoid](API.md#isnotvoid)
 - [isNumber](API.md#isnumber)
 - [isOneOf](API.md#isoneof)
 - [isOneOfType](API.md#isoneoftype)
@@ -180,8 +180,8 @@ ___
 
 #### Parameters
 
-| Name | Type                                          |
-| :------ |:----------------------------------------------|
+| Name | Type |
+| :------ | :------ |
 | `assertT` | [`Assert`](API.md#assert)<`Input`, `Output`\> |
 
 #### Returns
@@ -248,12 +248,12 @@ ___
 
 #### Parameters
 
-| Name | Type                                       |
-| :------ |:-------------------------------------------|
-| `input` | `unknown`                                  |
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
 | `assertT` | [`Assert`](API.md#assert)<`unknown`, `T`\> |
-| `message` | `string`                                   |
-| `itemMessage` | `string`                                   |
+| `message` | `string` |
+| `itemMessage` | `string` |
 
 #### Returns
 
@@ -364,33 +364,6 @@ asserts input is T
 
 ___
 
-### isNeitherNullNorUndefined
-
-▸ **isNeitherNullNorUndefined**<`T`\>(`input`, `message?`): asserts input is T
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `input` | ``null`` \| `undefined` \| `T` |
-| `message` | `string` |
-
-#### Returns
-
-asserts input is T
-
-#### Defined in
-
-[index.ts:61](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L61)
-
-___
-
 ### isNever
 
 ▸ **isNever**(`_input`, `message?`): `never`
@@ -466,6 +439,33 @@ asserts input is T
 
 ___
 
+### isNotVoid
+
+▸ **isNotVoid**<`T`\>(`input`, `message?`): asserts input is Exclude<T, undefined \| null \| void\>
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `input` | `T` |
+| `message` | `string` |
+
+#### Returns
+
+asserts input is Exclude<T, undefined \| null \| void\>
+
+#### Defined in
+
+[index.ts:61](https://github.com/elierotenberg/typed-assert/blob/master/src/index.ts#L61)
+
+___
+
 ### isNumber
 
 ▸ **isNumber**(`input`, `message?`): asserts input is number
@@ -528,12 +528,12 @@ ___
 
 #### Parameters
 
-| Name | Type                                         |
-| :------ |:---------------------------------------------|
-| `input` | `unknown`                                    |
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
 | `assertT` | [`Assert`](API.md#assert)<`unknown`, `T`\>[] |
-| `message` | `string`                                     |
-| `itemMessage?` | `string`                                     |
+| `message` | `string` |
+| `itemMessage?` | `string` |
 
 #### Returns
 
@@ -558,11 +558,11 @@ ___
 
 #### Parameters
 
-| Name | Type                                          |
-| :------ |:----------------------------------------------|
-| `input` | `Input` \                                     | `undefined` |
+| Name | Type |
+| :------ | :------ |
+| `input` | `undefined` \| `Input` |
 | `assertT` | [`Assert`](API.md#assert)<`Input`, `Output`\> |
-| `message` | `string`                                      |
+| `message` | `string` |
 
 #### Returns
 
@@ -628,12 +628,12 @@ ___
 
 #### Parameters
 
-| Name | Type                                       |
-| :------ |:-------------------------------------------|
-| `input` | `unknown`                                  |
+| Name | Type |
+| :------ | :------ |
+| `input` | `unknown` |
 | `assertT` | [`Assert`](API.md#assert)<`unknown`, `T`\> |
-| `message` | `string`                                   |
-| `itemMessage` | `string`                                   |
+| `message` | `string` |
+| `itemMessage` | `string` |
 
 #### Returns
 
@@ -647,7 +647,7 @@ ___
 
 ### isRecordWithKeys
 
-▸ **isRecordWithKeys**<`K`\>(`input`, `keys`, `message?`): asserts input is { readonly[Key in string]: unknown}
+▸ **isRecordWithKeys**<`K`\>(`input`, `keys`, `message?`): asserts input is { readonly [Key in string]: unknown }
 
 #### Type parameters
 
@@ -665,7 +665,7 @@ ___
 
 #### Returns
 
-asserts input is { readonly[Key in string]: unknown}
+asserts input is { readonly [Key in string]: unknown }
 
 #### Defined in
 
@@ -740,8 +740,8 @@ ___
 
 #### Parameters
 
-| Name | Type                              |
-| :------ |:----------------------------------|
+| Name | Type |
+| :------ | :------ |
 | `assert?` | [`WeakAssert`](API.md#weakassert) |
 
 #### Returns

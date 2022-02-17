@@ -58,10 +58,10 @@ export function isNotUndefined<T>(
   assert(input !== undefined, message);
 }
 
-export function isNeitherNullNorUndefined<T>(
-  input: null | undefined | T,
+export function isNotVoid<T>(
+  input: T,
   message: string = expectedToBe("neither null nor undefined"),
-): asserts input is T {
+): asserts input is Exclude<T, undefined | null | void> {
   assert(input !== null && input !== undefined, message);
 }
 
