@@ -4,6 +4,10 @@
 
 See the [documentation](API.md).
 
+### Consider using [`zod`](https://github.com/colinhacks/zod)
+
+While this library does a fine job for most simple use cases, please consider using [`zod`](https://github.com/colinhacks/zod) if you need more complex assertions.
+
 ### Install
 
 ```npm install typed-assert```
