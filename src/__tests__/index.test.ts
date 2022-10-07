@@ -1,4 +1,5 @@
 import nodeAssert from "assert";
+import { Promise as BBPromise } from "bluebird";
 
 import * as t from "..";
 
@@ -12,6 +13,7 @@ const fixtures = {
   boolean: true,
   date: new Date(),
   promise: Promise.resolve(null),
+  promiseBluebird: BBPromise.resolve(null),
   record: {} as Record<string, unknown>,
   array: [] as unknown[],
   recordWithKeys: {
@@ -179,11 +181,10 @@ describe("typed-assert", () => {
       });
 
       test("isPromise", () => {
-        const v = orNull(fixtures.promise);
-        t.isPromise(v);
-        // v is "Promise<null>"
+        t.isPromise(orNull(fixtures.promise));
+        t.isPromise(orNull(fixtures.promiseBluebird));
         for (const [key, value] of entries) {
-          if (key === "promise") {
+          if (key.startsWith("promise")) {
             expect(() => t.isPromise(value)).not.toThrow();
           } else {
             expect(() => t.isPromise(value)).toThrow();
@@ -204,6 +205,7 @@ describe("typed-assert", () => {
               "recordWithKeys",
               "date",
               "promise",
+              "promiseBluebird",
               "array",
               "strings",
               "numbers",

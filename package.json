@@ -4,8 +4,8 @@
   "description": "typesafe assertion library for TypeScript 3.7+",
   "main": "build/index.js",
   "scripts": {
-    "test:src": "jest src/**/*.test.ts",
-    "test:build": "jest build/**/*.test.js",
+    "test:src": "jest src/.+/.+\\.test\\.ts",
+    "test:build": "jest src/.+/.+\\.test\\.js",
     "clean:doc": "rm -rf doc && rm -rf API.md",
     "build:doc": "npm run clean:doc && typedoc && sed s/README.md/API.md/ doc/README.md > API.md && rm -rf doc",
     "clean:ts": "rm -rf build",
@@ -27,10 +27,12 @@
   },
   "homepage": "https://github.com/elierotenberg/typed-assert#readme",
   "devDependencies": {
+    "@types/bluebird": "^3.5.37",
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.18",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
+    "bluebird": "^3.7.2",
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.4",
