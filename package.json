@@ -4,8 +4,8 @@
   "description": "typesafe assertion library for TypeScript 3.7+",
   "main": "build/index.js",
   "scripts": {
-    "test:src": "jest src/**/*.test.ts",
-    "test:build": "jest build/**/*.test.js",
+    "test:src": "jest src/.+/.+\\.test\\.ts",
+    "test:build": "jest src/.+/.+\\.test\\.js",
     "clean:doc": "rm -rf doc && rm -rf API.md",
     "build:doc": "npm run clean:doc && typedoc && sed s/README.md/API.md/ doc/README.md > API.md && rm -rf doc",
     "clean:ts": "rm -rf build",
