@@ -203,7 +203,7 @@ export function isPromise(
   input: unknown,
   message = expectedToBe("a promise"),
 ): asserts input is Promise<unknown> {
-  isInstanceOf(input, Promise, message);
+  assert(!!(input && typeof input === 'object' && 'then' in input && typeof (input as { then: any })?.then === 'function'), message);
 }
 
 export function check<Input, Output>(
